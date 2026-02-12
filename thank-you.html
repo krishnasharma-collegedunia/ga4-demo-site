@@ -12,12 +12,27 @@
 
   gtag('config', 'G-V96WXEPZXK');
 </script>
-<!-- Track lead conversion -->
+
+  <!-- Track lead conversion and purchase -->
 <script>
 gtag('event', 'lead_thankyou', {
   'event_category': 'lead',
   'event_label': 'form_submission',
   'value': 1
+});
+
+gtag('event', 'purchase', {
+  'transaction_id': 'lead_' + Date.now(),
+  'value': 1,
+  'currency': 'INR',
+  'items': [
+    {
+      'item_name': 'Course Lead',
+      'item_category': 'Lead',
+      'price': 1,
+      'quantity': 1
+    }
+  ]
 });
 </script>
 
