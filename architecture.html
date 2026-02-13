@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Website Architecture - Professional Development Academy</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 2rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 20px;
+      padding: 3rem;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+
+    h1 {
+      text-align: center;
+      color: #1a1a2e;
+      margin-bottom: 1rem;
+      font-size: 2.5rem;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 3rem;
+      font-size: 1.2rem;
+    }
+
+    .flow-diagram {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    .flow-step {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 2rem 1rem;
+      border-radius: 15px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+    }
+
+    .flow-step::after {
+      content: '→';
+      position: absolute;
+      right: -1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2rem;
+      color: #667eea;
+    }
+
+    .flow-step:last-child::after {
+      display: none;
+    }
+
+    .step-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .step-title {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+
+    .step-desc {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .feature-box {
+      background: #f8f9fa;
+      padding: 2rem;
+      border-radius: 15px;
+      border-left: 5px solid #667eea;
+    }
+
+    .feature-box h3 {
+      color: #667eea;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .feature-box ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .feature-box li {
+      padding: 0.5rem 0;
+      color: #666;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .feature-box li::before {
+      content: '✓';
+      color: #10b981;
+      font-weight: bold;
+    }
+
+    .tech-stack {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      color: white;
+      padding: 2rem;
+      border-radius: 15px;
+      margin-bottom: 3rem;
+    }
+
+    .tech-stack h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .tech-items {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+
+    .tech-item {
+      background: rgba(255,255,255,0.1);
+      padding: 1.5rem;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .tech-icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .ga-tracking {
+      background: #fff3cd;
+      padding: 2rem;
+      border-radius: 15px;
+      border: 2px solid #ffc107;
+    }
+
+    .ga-tracking h2 {
+      color: #856404;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .ga-events {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    .ga-event {
+      background: white;
+      padding: 1rem;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #856404;
+    }
+
+    @media (max-width: 1200px) {
+      .flow-diagram {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .tech-items {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .flow-diagram,
+      .features-grid,
+      .tech-items,
+      .ga-events {
+        grid-template-columns: 1fr;
+      }
+      
+      .flow-step::after {
+        content: '↓';
+        right: auto;
+        top: auto;
+        bottom: -1.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🏗️ Website Architecture Overview</h1>
+    <p class="subtitle">Professional Development Academy - Complete E-Commerce System</p>
+
+    <!-- User Flow -->
+    <h2 style="color: #1a1a2e; margin-bottom: 1.5rem;">📊 User Purchase Flow</h2>
+    <div class="flow-diagram">
+      <div class="flow-step">
+        <div class="step-icon">🏠</div>
+        <div class="step-title">Homepage</div>
+        <div class="step-desc">index.html</div>
+      </div>
+      <div class="flow-step">
+        <div class="step-icon">📚</div>
+        <div class="step-title">Browse</div>
+        <div class="step-desc">courses.html</div>
+      </div>
+      <div class="flow-step">
+        <div class="step-icon">🛒</div>
+        <div class="step-title">Cart</div>
+        <div class="step-desc">cart.html</div>
+      </div>
+      <div class="flow-step">
+        <div class="step-icon">💳</div>
+        <div class="step-title">Checkout</div>
+        <div class="step-desc">checkout.html</div>
+      </div>
+      <div class="flow-step">
+        <div class="step-icon">✅</div>
+        <div class="step-title">Success</div>
+        <div class="step-desc">thank-you-purchase.html</div>
+      </div>
+    </div>
+
+    <!-- Features -->
+    <h2 style="color: #1a1a2e; margin-bottom: 1.5rem;">⚡ Key Features</h2>
+    <div class="features-grid">
+      <div class="feature-box">
+        <h3>🛒 Shopping Cart</h3>
+        <ul>
+          <li>Add/Remove items</li>
+          <li>Cart badge counter</li>
+          <li>LocalStorage persistence</li>
+          <li>Toast notifications</li>
+          <li>Real-time updates</li>
+        </ul>
+      </div>
+      <div class="feature-box">
+        <h3>💰 Pricing System</h3>
+        <ul>
+          <li>Dynamic calculations</li>
+          <li>10% bulk discount</li>
+          <li>18% GST included</li>
+          <li>INR currency</li>
+          <li>Total breakdown</li>
+        </ul>
+      </div>
+      <div class="feature-box">
+        <h3>🎨 Design</h3>
+        <ul>
+          <li>Modern gradient UI</li>
+          <li>Fully responsive</li>
+          <li>Smooth animations</li>
+          <li>Card-based layout</li>
+          <li>Emoji icons</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Tech Stack -->
+    <div class="tech-stack">
+      <h2>🔧 Technology Stack</h2>
+      <div class="tech-items">
+        <div class="tech-item">
+          <div class="tech-icon">📄</div>
+          <div>HTML5</div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon">🎨</div>
+          <div>CSS3 Grid/Flexbox</div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon">⚡</div>
+          <div>Vanilla JavaScript</div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon">💾</div>
+          <div>LocalStorage API</div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon">📊</div>
+          <div>Google Analytics 4</div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon">🎭</div>
+          <div>CSS Animations</div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon">📱</div>
+          <div>Responsive Design</div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon">🚀</div>
+          <div>No Dependencies</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GA Tracking -->
+    <div class="ga-tracking">
+      <h2>📈 Google Analytics E-Commerce Events</h2>
+      <div class="ga-events">
+        <div class="ga-event">add_to_cart</div>
+        <div class="ga-event">remove_from_cart</div>
+        <div class="ga-event">view_cart</div>
+        <div class="ga-event">begin_checkout</div>
+        <div class="ga-event">add_shipping_info</div>
+        <div class="ga-event">add_payment_info</div>
+        <div class="ga-event">purchase</div>
+        <div class="ga-event">page_view</div>
+      </div>
+    </div>
+
+    <!-- File Structure -->
+    <h2 style="color: #1a1a2e; margin-bottom: 1.5rem;">📁 File Structure</h2>
+    <div style="background: #f8f9fa; padding: 2rem; border-radius: 15px; font-family: monospace;">
+      <div style="margin-bottom: 0.5rem;">📦 enhanced-website/</div>
+      <div style="margin-left: 2rem;">
+        <div>├── 📄 index.html (Homepage)</div>
+        <div>├── 📄 courses.html (Catalog + Add to Cart)</div>
+        <div>├── 📄 cart.html (Shopping Cart)</div>
+        <div>├── 📄 checkout.html (Payment & Billing)</div>
+        <div>├── 📄 thank-you-purchase.html (Order Success)</div>
+        <div>├── 📄 contact.html (Contact Form)</div>
+        <div>├── 📄 thank-you.html (Lead Form Success)</div>
+        <div>└── 📘 README.md (Documentation)</div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-top: 3rem; text-align: center;">
+      <div>
+        <div style="font-size: 3rem; color: #667eea;">7</div>
+        <div style="color: #666;">HTML Pages</div>
+      </div>
+      <div>
+        <div style="font-size: 3rem; color: #667eea;">9</div>
+        <div style="color: #666;">Courses</div>
+      </div>
+      <div>
+        <div style="font-size: 3rem; color: #667eea;">8</div>
+        <div style="color: #666;">GA Events</div>
+      </div>
+      <div>
+        <div style="font-size: 3rem; color: #667eea;">0</div>
+        <div style="color: #666;">Dependencies</div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 2px solid #e0e0e0; color: #888;">
+      <p>🎓 Professional Development Academy - Complete E-Commerce Solution</p>
+      <p style="margin-top: 0.5rem;">Built with ❤️ using HTML, CSS, and JavaScript</p>
+    </div>
+  </div>
+</body>
+</html>

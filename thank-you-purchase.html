@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thank You - Professional Development Academy</title>
+  <title>Order Successful - Professional Development Academy</title>
   
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-V96WXEPZXK"></script>
@@ -12,28 +12,12 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-V96WXEPZXK');
-  </script>
 
-  <!-- Track lead conversion and purchase -->
-  <script>
-    gtag('event', 'lead_thankyou', {
-      'event_category': 'lead',
-      'event_label': 'form_submission',
-      'value': 1
-    });
-
-    gtag('event', 'purchase', {
-      'transaction_id': 'lead_' + Date.now(),
-      'value': 1.0,
-      'currency': 'INR',
-      'items': [
-        {
-          'item_name': 'Course Lead',
-          'item_category': 'Lead',
-          'price': 1.0,
-          'quantity': 1
-        }
-      ]
+    // Track thank you page view
+    gtag('event', 'page_view', {
+      page_title: 'Order Successful',
+      page_location: window.location.href,
+      page_path: '/thank-you.html'
     });
   </script>
 
@@ -118,8 +102,8 @@
       background: white;
       border-radius: 30px;
       padding: 4rem 3rem;
-      max-width: 700px;
-      text-align: center;
+      max-width: 900px;
+      width: 100%;
       box-shadow: 0 20px 60px rgba(0,0,0,0.3);
       animation: fadeInScale 0.8s ease;
       position: relative;
@@ -140,7 +124,7 @@
     .success-icon {
       width: 120px;
       height: 120px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -148,7 +132,7 @@
       font-size: 4rem;
       margin: 0 auto 2rem;
       animation: pulse 2s ease infinite;
-      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+      box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
     }
 
     @keyframes pulse {
@@ -164,12 +148,14 @@
       font-size: 2.5rem;
       margin-bottom: 1rem;
       color: #1a1a2e;
+      text-align: center;
     }
 
-    .thank-you-content p {
+    .thank-you-content > p {
       font-size: 1.2rem;
       color: #666;
       margin-bottom: 2rem;
+      text-align: center;
       line-height: 1.8;
     }
 
@@ -178,13 +164,104 @@
       font-weight: 600;
     }
 
-    /* Next Steps */
-    .next-steps {
+    /* Order Details */
+    .order-details {
       background: #f8f9fa;
       padding: 2rem;
       border-radius: 15px;
       margin: 2rem 0;
-      text-align: left;
+    }
+
+    .order-details h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: #1a1a2e;
+      text-align: center;
+    }
+
+    .order-info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .order-info-item {
+      text-align: center;
+    }
+
+    .order-info-label {
+      font-size: 0.9rem;
+      color: #888;
+      margin-bottom: 0.5rem;
+    }
+
+    .order-info-value {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .purchased-courses {
+      margin-top: 2rem;
+    }
+
+    .purchased-courses h3 {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      color: #333;
+    }
+
+    .course-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      background: white;
+      border-radius: 10px;
+      margin-bottom: 0.75rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .course-icon {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+
+    .course-details {
+      flex: 1;
+    }
+
+    .course-name {
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 0.25rem;
+    }
+
+    .course-meta {
+      font-size: 0.85rem;
+      color: #888;
+    }
+
+    .course-price {
+      font-weight: bold;
+      color: #667eea;
+      font-size: 1.1rem;
+    }
+
+    /* Next Steps */
+    .next-steps {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      margin: 2rem 0;
+      border: 2px solid #667eea;
     }
 
     .next-steps h2 {
@@ -296,6 +373,7 @@
       margin-top: 2rem;
       padding-top: 2rem;
       border-top: 1px solid #e0e0e0;
+      text-align: center;
     }
 
     .social-proof p {
@@ -338,6 +416,15 @@
       .nav-links {
         gap: 1rem;
       }
+
+      .order-info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .course-item {
+        flex-direction: column;
+        text-align: center;
+      }
     }
   </style>
 </head>
@@ -345,7 +432,7 @@
   <!-- Navigation -->
   <nav>
     <div class="nav-container">
-      <a href="index.html" class="logo">PD Academy</a>
+      <a href="index.html" class="logo">🎓 PD Academy</a>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="courses.html">Courses</a></li>
@@ -359,25 +446,38 @@
     <div class="thank-you-content">
       <div class="success-icon">✓</div>
       
-      <h1>Thank You!</h1>
-      <p>Your message has been successfully received. We're excited to help you on your journey to <span class="highlight">transform your life</span> and achieve your goals!</p>
+      <h1>🎉 Order Successful!</h1>
+      <p>Thank you for your purchase! Your order has been confirmed and you'll receive a confirmation email shortly.</p>
 
+      <!-- Order Details -->
+      <div class="order-details" id="orderDetailsSection">
+        <h2>📦 Order Details</h2>
+        <div class="order-info-grid" id="orderInfoGrid">
+          <!-- Will be populated by JavaScript -->
+        </div>
+
+        <div class="purchased-courses" id="purchasedCourses">
+          <!-- Will be populated by JavaScript -->
+        </div>
+      </div>
+
+      <!-- Next Steps -->
       <div class="next-steps">
-        <h2>What Happens Next?</h2>
+        <h2>🚀 What's Next?</h2>
         
         <div class="step">
           <div class="step-number">1</div>
           <div class="step-content">
-            <h3>We'll Review Your Information</h3>
-            <p>Our team will carefully review your inquiry and match you with the perfect course and advisor.</p>
+            <h3>Check Your Email</h3>
+            <p>You'll receive a confirmation email with your order details and access instructions within the next few minutes.</p>
           </div>
         </div>
 
         <div class="step">
           <div class="step-number">2</div>
           <div class="step-content">
-            <h3>Expect a Call Within 24 Hours</h3>
-            <p>A dedicated course advisor will reach out to discuss your goals and answer any questions.</p>
+            <h3>Access Your Courses</h3>
+            <p>Log in to your account to start learning immediately. All your purchased courses are now available.</p>
           </div>
         </div>
 
@@ -385,23 +485,22 @@
           <div class="step-number">3</div>
           <div class="step-content">
             <h3>Start Your Transformation</h3>
-            <p>Once enrolled, you'll get immediate access to our platform and community support.</p>
+            <p>Begin your learning journey and join our community of successful professionals.</p>
           </div>
         </div>
       </div>
 
       <div class="action-buttons">
         <a href="courses.html" class="btn btn-primary">
-          <span>Explore Our Courses</span>
-          <span>→</span>
+          <span>📚 Browse More Courses</span>
         </a>
         <a href="index.html" class="btn btn-secondary">
-          <span>Return Home</span>
+          <span>🏠 Return Home</span>
         </a>
       </div>
 
       <div class="social-proof">
-        <p>🎉 Join 50,000+ students who have transformed their lives with us</p>
+        <p>🎓 Join 50,000+ students who have transformed their lives with us</p>
       </div>
     </div>
   </section>
@@ -415,9 +514,61 @@
   </footer>
 
   <script>
+    // Load order details
+    function loadOrderDetails() {
+      const orderDetails = JSON.parse(localStorage.getItem('lastOrder'));
+      
+      if (!orderDetails) {
+        // If no order details found, redirect to courses
+        setTimeout(() => {
+          window.location.href = 'courses.html';
+        }, 3000);
+        return;
+      }
+
+      // Populate order info
+      const orderInfoHTML = `
+        <div class="order-info-item">
+          <div class="order-info-label">Order ID</div>
+          <div class="order-info-value">${orderDetails.transactionId}</div>
+        </div>
+        <div class="order-info-item">
+          <div class="order-info-label">Order Date</div>
+          <div class="order-info-value">${new Date(orderDetails.date).toLocaleDateString()}</div>
+        </div>
+        <div class="order-info-item">
+          <div class="order-info-label">Customer</div>
+          <div class="order-info-value">${orderDetails.customer.firstName} ${orderDetails.customer.lastName}</div>
+        </div>
+        <div class="order-info-item">
+          <div class="order-info-label">Total Amount</div>
+          <div class="order-info-value" style="color: #667eea;">₹${orderDetails.totals.total.toLocaleString()}</div>
+        </div>
+      `;
+      
+      document.getElementById('orderInfoGrid').innerHTML = orderInfoHTML;
+
+      // Populate purchased courses
+      const coursesHTML = `
+        <h3>📚 Your Purchased Courses (${orderDetails.items.length})</h3>
+        ${orderDetails.items.map(course => `
+          <div class="course-item">
+            <div class="course-icon">${course.icon}</div>
+            <div class="course-details">
+              <div class="course-name">${course.name}</div>
+              <div class="course-meta">${course.category} • ${course.duration}</div>
+            </div>
+            <div class="course-price">₹${course.price.toLocaleString()}</div>
+          </div>
+        `).join('')}
+      `;
+      
+      document.getElementById('purchasedCourses').innerHTML = coursesHTML;
+    }
+
     // Create confetti effect
     function createConfetti() {
-      const colors = ['#667eea', '#764ba2', '#f093fb', '#4facfe'];
+      const colors = ['#667eea', '#764ba2', '#10b981', '#ffc107', '#ff4757'];
       const confettiCount = 50;
       
       for (let i = 0; i < confettiCount; i++) {
@@ -433,8 +584,11 @@
       }
     }
 
-    // Trigger confetti on page load
-    window.addEventListener('load', createConfetti);
+    // Initialize
+    window.addEventListener('load', function() {
+      loadOrderDetails();
+      createConfetti();
+    });
   </script>
 </body>
 </html>

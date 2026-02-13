@@ -61,6 +61,7 @@
       display: flex;
       gap: 2rem;
       list-style: none;
+      align-items: center;
     }
 
     .nav-links a {
@@ -76,6 +77,34 @@
     .nav-links a.active {
       background: rgba(255,255,255,0.1);
       transform: translateY(-2px);
+    }
+
+    .cart-icon {
+      position: relative;
+      cursor: pointer;
+      font-size: 1.5rem;
+      padding: 0.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .cart-icon:hover {
+      transform: scale(1.1);
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: #ff4757;
+      color: white;
+      border-radius: 50%;
+      width: 22px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: bold;
     }
 
     /* Page Header */
@@ -359,18 +388,24 @@
   <!-- Navigation -->
   <nav>
     <div class="nav-container">
-      <a href="index.html" class="logo">PD Academy</a>
+      <a href="index.html" class="logo">🎓 PD Academy</a>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="courses.html">Courses</a></li>
         <li><a href="contact.html" class="active">Contact</a></li>
+        <li>
+          <a href="cart.html" class="cart-icon">
+            🛒
+            <span class="cart-count" id="cartCount">0</span>
+          </a>
+        </li>
       </ul>
     </div>
   </nav>
 
   <!-- Page Header -->
   <section class="page-header">
-    <h1>Let's Transform Your Future Together</h1>
+    <h1>💬 Let's Transform Your Future Together</h1>
     <p>Get in touch with our team and take the first step towards achieving your goals</p>
   </section>
 
@@ -380,7 +415,7 @@
       <div class="contact-wrapper">
         <!-- Contact Info -->
         <div class="contact-info">
-          <h2>Get in Touch</h2>
+          <h2>📞 Get in Touch</h2>
           
           <div class="info-item">
             <div class="info-icon">📧</div>
@@ -391,7 +426,7 @@
           </div>
 
           <div class="info-item">
-            <div class="info-icon">📞</div>
+            <div class="info-icon">📱</div>
             <div class="info-content">
               <h3>Call Us</h3>
               <p>+91 9876543210<br>Mon-Fri: 9AM - 6PM IST</p>
@@ -407,7 +442,7 @@
           </div>
 
           <div class="info-item">
-            <div class="info-icon">⏰</div>
+            <div class="info-icon">🕒</div>
             <div class="info-content">
               <h3>Business Hours</h3>
               <p>Monday - Friday: 9:00 AM - 6:00 PM<br>Saturday: 10:00 AM - 4:00 PM<br>Sunday: Closed</p>
@@ -424,7 +459,7 @@
 
         <!-- Contact Form -->
         <div class="contact-form">
-          <h2>Send Us a Message</h2>
+          <h2>✉️ Send Us a Message</h2>
           <p>Fill out the form below and we'll get back to you within 24 hours</p>
           
           <form action="thank-you.html" method="get">
@@ -467,7 +502,7 @@
               <textarea id="message" name="message" required placeholder="Tell us about your goals and how we can help..."></textarea>
             </div>
 
-            <button type="submit" class="submit-btn">Send Message</button>
+            <button type="submit" class="submit-btn">📨 Send Message</button>
           </form>
         </div>
       </div>
@@ -477,24 +512,24 @@
   <!-- Benefits Section -->
   <section class="benefits-section">
     <div class="container">
-      <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem; color: #1a1a2e;">Why Choose Us?</h2>
+      <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem; color: #1a1a2e;">🌟 Why Choose Us?</h2>
       <p style="text-align: center; color: #666; font-size: 1.1rem;">Join thousands of successful professionals worldwide</p>
       
       <div class="benefits-grid">
         <div class="benefit-card">
-          <div class="benefit-icon">🎓</div>
+          <div class="benefit-icon">👨‍🏫</div>
           <h3>Expert Instructors</h3>
           <p>Learn from industry leaders with proven track records</p>
         </div>
 
         <div class="benefit-card">
-          <div class="benefit-icon">🏆</div>
+          <div class="benefit-icon">🎓</div>
           <h3>Certified Programs</h3>
           <p>Earn recognized certificates to boost your career</p>
         </div>
 
         <div class="benefit-card">
-          <div class="benefit-icon">💡</div>
+          <div class="benefit-icon">💼</div>
           <h3>Practical Learning</h3>
           <p>Apply knowledge immediately with real-world projects</p>
         </div>
@@ -515,5 +550,16 @@
       <p>Empowering individuals to achieve extraordinary results.</p>
     </div>
   </footer>
+
+  <script>
+    // Update cart count
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      document.getElementById('cartCount').textContent = cart.length;
+    }
+
+    // Initialize
+    updateCartCount();
+  </script>
 </body>
 </html>

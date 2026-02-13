@@ -60,6 +60,7 @@
       display: flex;
       gap: 2rem;
       list-style: none;
+      align-items: center;
     }
 
     .nav-links a {
@@ -75,6 +76,34 @@
     .nav-links a.active {
       background: rgba(255,255,255,0.1);
       transform: translateY(-2px);
+    }
+
+    .cart-icon {
+      position: relative;
+      cursor: pointer;
+      font-size: 1.5rem;
+      padding: 0.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .cart-icon:hover {
+      transform: scale(1.1);
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: #ff4757;
+      color: white;
+      border-radius: 50%;
+      width: 22px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: bold;
     }
 
     /* Hero Section */
@@ -290,11 +319,17 @@
   <!-- Navigation -->
   <nav>
     <div class="nav-container">
-      <a href="index.html" class="logo">PD Academy</a>
+      <a href="index.html" class="logo">🎓 PD Academy</a>
       <ul class="nav-links">
         <li><a href="index.html" class="active">Home</a></li>
         <li><a href="courses.html">Courses</a></li>
         <li><a href="contact.html">Contact</a></li>
+        <li>
+          <a href="cart.html" class="cart-icon">
+            🛒
+            <span class="cart-count" id="cartCount">0</span>
+          </a>
+        </li>
       </ul>
     </div>
   </nav>
@@ -302,39 +337,39 @@
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-content">
-      <h1>Transform Your Life Today</h1>
+      <h1>🚀 Transform Your Life Today</h1>
       <p>Unlock your full potential with world-class professional development courses designed to elevate your career and personal growth.</p>
-      <a href="courses.html" class="cta-button">Explore Courses</a>
+      <a href="courses.html" class="cta-button">Explore Courses →</a>
     </div>
   </section>
 
   <!-- Features Section -->
   <section class="features">
     <div class="container">
-      <h2 class="section-title">Why Choose Us?</h2>
+      <h2 class="section-title">✨ Why Choose Us?</h2>
       <div class="features-grid">
         <div class="feature-card">
-          <div class="feature-icon">🎯</div>
+          <div class="feature-icon">👨‍🏫</div>
           <h3>Expert Instructors</h3>
           <p>Learn from industry leaders with decades of real-world experience and proven track records.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">⚡</div>
+          <div class="feature-icon">💼</div>
           <h3>Practical Skills</h3>
           <p>Gain actionable knowledge you can apply immediately to see real results in your career.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">🌟</div>
+          <div class="feature-icon">♾️</div>
           <h3>Lifetime Access</h3>
           <p>Once enrolled, enjoy unlimited access to course materials and updates forever.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">🤝</div>
+          <div class="feature-icon">👥</div>
           <h3>Community Support</h3>
           <p>Join a vibrant community of like-minded individuals committed to growth and success.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">📱</div>
+          <div class="feature-icon">🌍</div>
           <h3>Learn Anywhere</h3>
           <p>Access courses on any device, at your own pace, from anywhere in the world.</p>
         </div>
@@ -374,7 +409,7 @@
   <!-- Testimonials -->
   <section class="testimonials">
     <div class="container">
-      <h2 class="section-title">Success Stories</h2>
+      <h2 class="section-title">💬 Success Stories</h2>
       <div class="testimonial-card">
         <p>"This program completely transformed my career. Within 6 months, I doubled my income and found my true calling. The instructors are phenomenal!"</p>
         <div class="testimonial-author">- Sarah Johnson, Marketing Director</div>
@@ -397,5 +432,16 @@
       <p>Empowering individuals to achieve extraordinary results.</p>
     </div>
   </footer>
+
+  <script>
+    // Update cart count
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      document.getElementById('cartCount').textContent = cart.length;
+    }
+
+    // Initialize
+    updateCartCount();
+  </script>
 </body>
 </html>

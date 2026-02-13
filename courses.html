@@ -60,6 +60,7 @@
       display: flex;
       gap: 2rem;
       list-style: none;
+      align-items: center;
     }
 
     .nav-links a {
@@ -75,6 +76,41 @@
     .nav-links a.active {
       background: rgba(255,255,255,0.1);
       transform: translateY(-2px);
+    }
+
+    /* Cart Icon */
+    .cart-icon {
+      position: relative;
+      cursor: pointer;
+      font-size: 1.5rem;
+      padding: 0.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .cart-icon:hover {
+      transform: scale(1.1);
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: #ff4757;
+      color: white;
+      border-radius: 50%;
+      width: 22px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: bold;
+      animation: pulse 0.3s ease;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
     }
 
     /* Page Header */
@@ -161,7 +197,6 @@
       overflow: hidden;
       box-shadow: 0 5px 20px rgba(0,0,0,0.1);
       transition: all 0.3s ease;
-      cursor: pointer;
     }
 
     .course-card:hover {
@@ -211,6 +246,7 @@
       align-items: center;
       padding-top: 1rem;
       border-top: 1px solid #eee;
+      margin-bottom: 1rem;
     }
 
     .course-duration {
@@ -236,23 +272,93 @@
       font-size: 1.1rem;
     }
 
-    .enroll-btn {
+    .course-actions {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+
+    .btn {
       display: block;
-      width: 100%;
       padding: 0.8rem;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
       text-align: center;
       text-decoration: none;
       border-radius: 8px;
       font-weight: 600;
-      margin-top: 1rem;
       transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
     }
 
-    .enroll-btn:hover {
+    .add-to-cart-btn {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+
+    .add-to-cart-btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    }
+
+    .add-to-cart-btn:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .view-details-btn {
+      background: white;
+      color: #667eea;
+      border: 2px solid #667eea;
+    }
+
+    .view-details-btn:hover {
+      background: #f8f9fa;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      top: 100px;
+      right: 20px;
+      background: #10b981;
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      z-index: 10000;
+      animation: slideIn 0.3s ease, slideOut 0.3s ease 2.7s;
+      opacity: 0;
+    }
+
+    .toast.show {
+      opacity: 1;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(400px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideOut {
+      from {
+        transform: translateX(0);
+        opacity: 1;
+      }
+      to {
+        transform: translateX(400px);
+        opacity: 0;
+      }
     }
 
     /* CTA Section */
@@ -318,6 +424,12 @@
       .nav-links {
         gap: 1rem;
       }
+
+      .toast {
+        right: 10px;
+        left: 10px;
+        width: auto;
+      }
     }
   </style>
 </head>
@@ -325,18 +437,24 @@
   <!-- Navigation -->
   <nav>
     <div class="nav-container">
-      <a href="index.html" class="logo">PD Academy</a>
+      <a href="index.html" class="logo">🎓 PD Academy</a>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="courses.html" class="active">Courses</a></li>
         <li><a href="contact.html">Contact</a></li>
+        <li>
+          <a href="cart.html" class="cart-icon">
+            🛒
+            <span class="cart-count" id="cartCount">0</span>
+          </a>
+        </li>
       </ul>
     </div>
   </nav>
 
   <!-- Page Header -->
   <section class="page-header">
-    <h1>Discover Your Path to Success</h1>
+    <h1>🚀 Discover Your Path to Success</h1>
     <p>Choose from our comprehensive collection of expert-led courses</p>
   </section>
 
@@ -345,185 +463,16 @@
     <div class="container">
       <!-- Filter Tabs -->
       <div class="filter-tabs">
-        <button class="filter-btn active">All Courses</button>
-        <button class="filter-btn">Leadership</button>
-        <button class="filter-btn">Business</button>
-        <button class="filter-btn">Personal Growth</button>
-        <button class="filter-btn">Communication</button>
+        <button class="filter-btn active" data-category="all">All Courses</button>
+        <button class="filter-btn" data-category="Leadership">Leadership</button>
+        <button class="filter-btn" data-category="Business">Business</button>
+        <button class="filter-btn" data-category="Personal Growth">Personal Growth</button>
+        <button class="filter-btn" data-category="Communication">Communication</button>
       </div>
 
       <!-- Courses Grid -->
-      <div class="courses-grid">
-        <!-- Course 1 -->
-        <div class="course-card">
-          <div class="course-image">🎯</div>
-          <div class="course-content">
-            <span class="course-category">Leadership</span>
-            <h3>Master Leadership Skills</h3>
-            <div class="course-rating">
-              <span class="stars">★★★★★</span>
-              <span>(4.9/5)</span>
-            </div>
-            <p>Develop the essential skills to lead teams, drive innovation, and create lasting impact in your organization.</p>
-            <div class="course-meta">
-              <span class="course-duration">⏱ 8 weeks</span>
-              <span class="course-price">₹14,999</span>
-            </div>
-            <a href="contact.html" class="enroll-btn">Enroll Now</a>
-          </div>
-        </div>
-
-        <!-- Course 2 -->
-        <div class="course-card">
-          <div class="course-image">💼</div>
-          <div class="course-content">
-            <span class="course-category">Business</span>
-            <h3>Business Strategy & Growth</h3>
-            <div class="course-rating">
-              <span class="stars">★★★★★</span>
-              <span>(4.8/5)</span>
-            </div>
-            <p>Learn proven strategies to scale your business, optimize operations, and achieve sustainable growth.</p>
-            <div class="course-meta">
-              <span class="course-duration">⏱ 10 weeks</span>
-              <span class="course-price">₹19,999</span>
-            </div>
-            <a href="contact.html" class="enroll-btn">Enroll Now</a>
-          </div>
-        </div>
-
-        <!-- Course 3 -->
-        <div class="course-card">
-          <div class="course-image">🧠</div>
-          <div class="course-content">
-            <span class="course-category">Personal Growth</span>
-            <h3>Peak Performance Mastery</h3>
-            <div class="course-rating">
-              <span class="stars">★★★★★</span>
-              <span>(5.0/5)</span>
-            </div>
-            <p>Unlock your full potential and achieve extraordinary results in every area of your life.</p>
-            <div class="course-meta">
-              <span class="course-duration">⏱ 6 weeks</span>
-              <span class="course-price">₹12,999</span>
-            </div>
-            <a href="contact.html" class="enroll-btn">Enroll Now</a>
-          </div>
-        </div>
-
-        <!-- Course 4 -->
-        <div class="course-card">
-          <div class="course-image">💬</div>
-          <div class="course-content">
-            <span class="course-category">Communication</span>
-            <h3>Advanced Communication Skills</h3>
-            <div class="course-rating">
-              <span class="stars">★★★★★</span>
-              <span>(4.9/5)</span>
-            </div>
-            <p>Master the art of persuasion, influence, and impactful communication in any situation.</p>
-            <div class="course-meta">
-              <span class="course-duration">⏱ 5 weeks</span>
-              <span class="course-price">₹9,999</span>
-            </div>
-            <a href="contact.html" class="enroll-btn">Enroll Now</a>
-          </div>
-        </div>
-
-        <!-- Course 5 -->
-        <div class="course-card">
-          <div class="course-image">⚡</div>
-          <div class="course-content">
-            <span class="course-category">Personal Growth</span>
-            <h3>Time Management Mastery</h3>
-            <div class="course-rating">
-              <span class="stars">★★★★★</span>
-              <span>(4.7/5)</span>
-            </div>
-            <p>Take control of your time, boost productivity, and achieve work-life balance with proven techniques.</p>
-            <div class="course-meta">
-              <span class="course-duration">⏱ 4 weeks</span>
-              <span class="course-price">₹7,999</span>
-            </div>
-            <a href="contact.html" class="enroll-btn">Enroll Now</a>
-          </div>
-        </div>
-
-        <!-- Course 6 -->
-        <div class="course-card">
-          <div class="course-image">🚀</div>
-          <div class="course-content">
-            <span class="course-category">Business</span>
-            <h3>Digital Marketing Excellence</h3>
-            <div class="course-rating">
-              <span class="stars">★★★★★</span>
-              <span>(4.8/5)</span>
-            </div>
-            <p>Master modern marketing strategies to grow your brand and reach your target audience effectively.</p>
-            <div class="course-meta">
-              <span class="course-duration">⏱ 12 weeks</span>
-              <span class="course-price">₹24,999</span>
-            </div>
-            <a href="contact.html" class="enroll-btn">Enroll Now</a>
-          </div>
-        </div>
-
-        <!-- Course 7 -->
-        <div class="course-card">
-          <div class="course-image">💪</div>
-          <div class="course-content">
-            <span class="course-category">Personal Growth</span>
-            <h3>Building Unstoppable Confidence</h3>
-            <div class="course-rating">
-              <span class="stars">★★★★★</span>
-              <span>(4.9/5)</span>
-            </div>
-            <p>Transform your mindset, overcome self-doubt, and develop unshakeable confidence in yourself.</p>
-            <div class="course-meta">
-              <span class="course-duration">⏱ 6 weeks</span>
-              <span class="course-price">₹11,999</span>
-            </div>
-            <a href="contact.html" class="enroll-btn">Enroll Now</a>
-          </div>
-        </div>
-
-        <!-- Course 8 -->
-        <div class="course-card">
-          <div class="course-image">🎓</div>
-          <div class="course-content">
-            <span class="course-category">Leadership</span>
-            <h3>Executive Leadership Program</h3>
-            <div class="course-rating">
-              <span class="stars">★★★★★</span>
-              <span>(5.0/5)</span>
-            </div>
-            <p>Advanced leadership training for executives ready to take their careers to the next level.</p>
-            <div class="course-meta">
-              <span class="course-duration">⏱ 16 weeks</span>
-              <span class="course-price">₹49,999</span>
-            </div>
-            <a href="contact.html" class="enroll-btn">Enroll Now</a>
-          </div>
-        </div>
-
-        <!-- Course 9 -->
-        <div class="course-card">
-          <div class="course-image">🌟</div>
-          <div class="course-content">
-            <span class="course-category">Communication</span>
-            <h3>Public Speaking Mastery</h3>
-            <div class="course-rating">
-              <span class="stars">★★★★★</span>
-              <span>(4.8/5)</span>
-            </div>
-            <p>Overcome stage fright and become a captivating speaker who inspires and influences audiences.</p>
-            <div class="course-meta">
-              <span class="course-duration">⏱ 8 weeks</span>
-              <span class="course-price">₹16,999</span>
-            </div>
-            <a href="contact.html" class="enroll-btn">Enroll Now</a>
-          </div>
-        </div>
+      <div class="courses-grid" id="coursesGrid">
+        <!-- Courses will be dynamically loaded here -->
       </div>
     </div>
   </section>
@@ -531,7 +480,7 @@
   <!-- CTA Section -->
   <section class="cta-section">
     <div class="container">
-      <h2>Ready to Start Your Journey?</h2>
+      <h2>💡 Ready to Start Your Journey?</h2>
       <p>Join thousands of successful professionals who have transformed their lives</p>
       <a href="contact.html" class="cta-button">Get Started Today</a>
     </div>
@@ -546,13 +495,224 @@
   </footer>
 
   <script>
-    // Simple filter functionality
+    // Course Data
+    const courses = [
+      {
+        id: 'course-1',
+        name: 'Master Leadership Skills',
+        category: 'Leadership',
+        description: 'Develop the essential skills to lead teams, drive innovation, and create lasting impact in your organization.',
+        duration: '8 weeks',
+        price: 14999,
+        rating: 4.9,
+        icon: '👔'
+      },
+      {
+        id: 'course-2',
+        name: 'Business Strategy & Growth',
+        category: 'Business',
+        description: 'Learn proven strategies to scale your business, optimize operations, and achieve sustainable growth.',
+        duration: '10 weeks',
+        price: 19999,
+        rating: 4.8,
+        icon: '📊'
+      },
+      {
+        id: 'course-3',
+        name: 'Peak Performance Mastery',
+        category: 'Personal Growth',
+        description: 'Unlock your full potential and achieve extraordinary results in every area of your life.',
+        duration: '6 weeks',
+        price: 12999,
+        rating: 5.0,
+        icon: '🎯'
+      },
+      {
+        id: 'course-4',
+        name: 'Advanced Communication Skills',
+        category: 'Communication',
+        description: 'Master the art of persuasion, influence, and impactful communication in any situation.',
+        duration: '5 weeks',
+        price: 9999,
+        rating: 4.9,
+        icon: '💬'
+      },
+      {
+        id: 'course-5',
+        name: 'Time Management Mastery',
+        category: 'Personal Growth',
+        description: 'Take control of your time, boost productivity, and achieve work-life balance with proven techniques.',
+        duration: '4 weeks',
+        price: 7999,
+        rating: 4.7,
+        icon: '⏰'
+      },
+      {
+        id: 'course-6',
+        name: 'Digital Marketing Excellence',
+        category: 'Business',
+        description: 'Master modern marketing strategies to grow your brand and reach your target audience effectively.',
+        duration: '12 weeks',
+        price: 24999,
+        rating: 4.8,
+        icon: '📱'
+      },
+      {
+        id: 'course-7',
+        name: 'Building Unstoppable Confidence',
+        category: 'Personal Growth',
+        description: 'Transform your mindset, overcome self-doubt, and develop unshakeable confidence in yourself.',
+        duration: '6 weeks',
+        price: 11999,
+        rating: 4.9,
+        icon: '💪'
+      },
+      {
+        id: 'course-8',
+        name: 'Executive Leadership Program',
+        category: 'Leadership',
+        description: 'Advanced leadership training for executives ready to take their careers to the next level.',
+        duration: '16 weeks',
+        price: 49999,
+        rating: 5.0,
+        icon: '🏆'
+      },
+      {
+        id: 'course-9',
+        name: 'Public Speaking Mastery',
+        category: 'Communication',
+        description: 'Overcome stage fright and become a captivating speaker who inspires and influences audiences.',
+        duration: '8 weeks',
+        price: 16999,
+        rating: 4.8,
+        icon: '🎤'
+      }
+    ];
+
+    // Initialize cart count
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      document.getElementById('cartCount').textContent = cart.length;
+    }
+
+    // Show toast notification
+    function showToast(message) {
+      const existingToast = document.querySelector('.toast');
+      if (existingToast) {
+        existingToast.remove();
+      }
+
+      const toast = document.createElement('div');
+      toast.className = 'toast show';
+      toast.innerHTML = `<span>✓</span> <span>${message}</span>`;
+      document.body.appendChild(toast);
+
+      setTimeout(() => {
+        toast.remove();
+      }, 3000);
+    }
+
+    // Add to cart function
+    function addToCart(courseId) {
+      const course = courses.find(c => c.id === courseId);
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      
+      // Check if course already in cart
+      if (cart.find(item => item.id === courseId)) {
+        showToast('Course already in cart!');
+        return;
+      }
+
+      cart.push({
+        id: course.id,
+        name: course.name,
+        price: course.price,
+        category: course.category,
+        duration: course.duration,
+        icon: course.icon
+      });
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartCount();
+      showToast('Course added to cart!');
+
+      // Google Analytics - Add to Cart Event
+      gtag('event', 'add_to_cart', {
+        currency: 'INR',
+        value: course.price,
+        items: [{
+          item_id: course.id,
+          item_name: course.name,
+          item_category: course.category,
+          price: course.price,
+          quantity: 1
+        }]
+      });
+
+      // Disable button
+      const button = document.querySelector(`button[data-course-id="${courseId}"]`);
+      if (button) {
+        button.disabled = true;
+        button.textContent = '✓ Added to Cart';
+      }
+    }
+
+    // Check if course is in cart
+    function isInCart(courseId) {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      return cart.some(item => item.id === courseId);
+    }
+
+    // Render courses
+    function renderCourses(filterCategory = 'all') {
+      const grid = document.getElementById('coursesGrid');
+      const filteredCourses = filterCategory === 'all' 
+        ? courses 
+        : courses.filter(c => c.category === filterCategory);
+
+      grid.innerHTML = filteredCourses.map(course => `
+        <div class="course-card" data-category="${course.category}">
+          <div class="course-image">${course.icon}</div>
+          <div class="course-content">
+            <span class="course-category">${course.category}</span>
+            <h3>${course.name}</h3>
+            <div class="course-rating">
+              <span class="stars">⭐⭐⭐⭐⭐</span>
+              <span>(${course.rating}/5)</span>
+            </div>
+            <p>${course.description}</p>
+            <div class="course-meta">
+              <span class="course-duration">🕒 ${course.duration}</span>
+              <span class="course-price">₹${course.price.toLocaleString()}</span>
+            </div>
+            <div class="course-actions">
+              <button 
+                class="btn add-to-cart-btn" 
+                onclick="addToCart('${course.id}')"
+                data-course-id="${course.id}"
+                ${isInCart(course.id) ? 'disabled' : ''}
+              >
+                ${isInCart(course.id) ? '✓ Added to Cart' : '🛒 Add to Cart'}
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Filter functionality
     document.querySelectorAll('.filter-btn').forEach(btn => {
       btn.addEventListener('click', function() {
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         this.classList.add('active');
+        const category = this.getAttribute('data-category');
+        renderCourses(category);
       });
     });
+
+    // Initialize
+    updateCartCount();
+    renderCourses();
   </script>
 </body>
 </html>
