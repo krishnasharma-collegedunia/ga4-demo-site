@@ -1,51 +1,440 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Thank You - GA4 Demo</title>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-V96WXEPZXK"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-V96WXEPZXK');
-</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank You - Professional Development Academy</title>
+  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V96WXEPZXK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-V96WXEPZXK');
+  </script>
 
   <!-- Track lead conversion and purchase -->
-<script>
-gtag('event', 'lead_thankyou', {
-  'event_category': 'lead',
-  'event_label': 'form_submission',
-  'value': 1
-});
+  <script>
+    gtag('event', 'lead_thankyou', {
+      'event_category': 'lead',
+      'event_label': 'form_submission',
+      'value': 1
+    });
 
-gtag('event', 'purchase', {
-  'transaction_id': 'lead_' + Date.now(),
-  'value': 1.0,
-  'currency': 'INR',
-  'items': [
-    {
-      'item_name': 'Course Lead',
-      'item_category': 'Lead',
-      'price': 1.0,
-      'quantity': 1
+    gtag('event', 'purchase', {
+      'transaction_id': 'lead_' + Date.now(),
+      'value': 1.0,
+      'currency': 'INR',
+      'items': [
+        {
+          'item_name': 'Course Lead',
+          'item_category': 'Lead',
+          'price': 1.0,
+          'quantity': 1
+        }
+      ]
+    });
+  </script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-  ]
-});
-</script>
 
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      overflow-x: hidden;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Navigation */
+    nav {
+      background: rgba(26, 26, 46, 0.9);
+      padding: 1rem 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: 1px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+    }
+
+    .nav-links a:hover {
+      background: rgba(255,255,255,0.1);
+      transform: translateY(-2px);
+    }
+
+    /* Thank You Section */
+    .thank-you-section {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+    }
+
+    .thank-you-content {
+      background: white;
+      border-radius: 30px;
+      padding: 4rem 3rem;
+      max-width: 700px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      animation: fadeInScale 0.8s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @keyframes fadeInScale {
+      from {
+        opacity: 0;
+        transform: scale(0.9) translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    .success-icon {
+      width: 120px;
+      height: 120px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      margin: 0 auto 2rem;
+      animation: pulse 2s ease infinite;
+      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+    }
+
+    .thank-you-content h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #1a1a2e;
+    }
+
+    .thank-you-content p {
+      font-size: 1.2rem;
+      color: #666;
+      margin-bottom: 2rem;
+      line-height: 1.8;
+    }
+
+    .highlight {
+      color: #667eea;
+      font-weight: 600;
+    }
+
+    /* Next Steps */
+    .next-steps {
+      background: #f8f9fa;
+      padding: 2rem;
+      border-radius: 15px;
+      margin: 2rem 0;
+      text-align: left;
+    }
+
+    .next-steps h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: #1a1a2e;
+      text-align: center;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .step:last-child {
+      margin-bottom: 0;
+    }
+
+    .step-number {
+      min-width: 35px;
+      height: 35px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .step-content h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+      color: #333;
+    }
+
+    .step-content p {
+      font-size: 0.95rem;
+      color: #666;
+      margin: 0;
+    }
+
+    /* Action Buttons */
+    .action-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .btn {
+      padding: 1rem 2rem;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: #667eea;
+      border: 2px solid #667eea;
+    }
+
+    .btn-secondary:hover {
+      background: #667eea;
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    /* Confetti Animation */
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: #667eea;
+      position: absolute;
+      animation: confetti-fall 3s linear infinite;
+    }
+
+    @keyframes confetti-fall {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Social Proof */
+    .social-proof {
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid #e0e0e0;
+    }
+
+    .social-proof p {
+      font-size: 0.9rem;
+      color: #888;
+      margin: 0;
+    }
+
+    /* Footer */
+    footer {
+      background: rgba(26, 26, 46, 0.9);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    footer p {
+      opacity: 0.8;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .thank-you-content {
+        padding: 3rem 2rem;
+      }
+
+      .thank-you-content h1 {
+        font-size: 2rem;
+      }
+
+      .action-buttons {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .nav-links {
+        gap: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>Thank You!</h1>
+  <!-- Navigation -->
   <nav>
-    <a href="index.html">Home</a> |
-    <a href="courses.html">Courses</a> |
-    <a href="contact.html">Contact</a>
+    <div class="nav-container">
+      <a href="index.html" class="logo">PD Academy</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
   </nav>
 
-  <p>Your demo form has been submitted.</p>
+  <!-- Thank You Section -->
+  <section class="thank-you-section">
+    <div class="thank-you-content">
+      <div class="success-icon">✓</div>
+      
+      <h1>Thank You!</h1>
+      <p>Your message has been successfully received. We're excited to help you on your journey to <span class="highlight">transform your life</span> and achieve your goals!</p>
+
+      <div class="next-steps">
+        <h2>What Happens Next?</h2>
+        
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>We'll Review Your Information</h3>
+            <p>Our team will carefully review your inquiry and match you with the perfect course and advisor.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>Expect a Call Within 24 Hours</h3>
+            <p>A dedicated course advisor will reach out to discuss your goals and answer any questions.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>Start Your Transformation</h3>
+            <p>Once enrolled, you'll get immediate access to our platform and community support.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <a href="courses.html" class="btn btn-primary">
+          <span>Explore Our Courses</span>
+          <span>→</span>
+        </a>
+        <a href="index.html" class="btn btn-secondary">
+          <span>Return Home</span>
+        </a>
+      </div>
+
+      <div class="social-proof">
+        <p>🎉 Join 50,000+ students who have transformed their lives with us</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 Professional Development Academy. All rights reserved.</p>
+      <p>Empowering individuals to achieve extraordinary results.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Create confetti effect
+    function createConfetti() {
+      const colors = ['#667eea', '#764ba2', '#f093fb', '#4facfe'];
+      const confettiCount = 50;
+      
+      for (let i = 0; i < confettiCount; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + '%';
+        confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.animationDelay = Math.random() * 3 + 's';
+        confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+        document.querySelector('.thank-you-section').appendChild(confetti);
+        
+        setTimeout(() => confetti.remove(), 5000);
+      }
+    }
+
+    // Trigger confetti on page load
+    window.addEventListener('load', createConfetti);
+  </script>
 </body>
 </html>
-

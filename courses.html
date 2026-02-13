@@ -1,28 +1,558 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Courses - GA4 Demo</title>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-V96WXEPZXK"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Courses - Professional Development Academy</title>
+  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V96WXEPZXK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-V96WXEPZXK');
+  </script>
 
-  gtag('config', 'G-V96WXEPZXK');
-</script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    nav {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      padding: 1rem 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: 1px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      background: rgba(255,255,255,0.1);
+      transform: translateY(-2px);
+    }
+
+    /* Page Header */
+    .page-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 8rem 2rem 4rem;
+      margin-top: 60px;
+      text-align: center;
+      color: white;
+    }
+
+    .page-header h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      animation: fadeInUp 0.8s ease;
+    }
+
+    .page-header p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      animation: fadeInUp 1s ease;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Courses Section */
+    .courses-section {
+      padding: 4rem 2rem;
+      background: #f8f9fa;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Filter Tabs */
+    .filter-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 0.7rem 1.5rem;
+      background: white;
+      border: 2px solid #667eea;
+      color: #667eea;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: #667eea;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+    }
+
+    /* Course Grid */
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+
+    .course-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .course-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    }
+
+    .course-image {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      color: white;
+    }
+
+    .course-content {
+      padding: 1.5rem;
+    }
+
+    .course-category {
+      display: inline-block;
+      padding: 0.3rem 1rem;
+      background: #667eea;
+      color: white;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+    }
+
+    .course-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #1a1a2e;
+    }
+
+    .course-card p {
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+
+    .course-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1rem;
+      border-top: 1px solid #eee;
+    }
+
+    .course-duration {
+      color: #888;
+      font-size: 0.9rem;
+    }
+
+    .course-price {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #667eea;
+    }
+
+    .course-rating {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .stars {
+      color: #ffc107;
+      font-size: 1.1rem;
+    }
+
+    .enroll-btn {
+      display: block;
+      width: 100%;
+      padding: 0.8rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      margin-top: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .enroll-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      color: white;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .cta-section p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: #667eea;
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+      background: #764ba2;
+    }
+
+    /* Footer */
+    footer {
+      background: #1a1a2e;
+      color: white;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    footer p {
+      opacity: 0.8;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .page-header h1 {
+        font-size: 2rem;
+      }
+
+      .courses-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        gap: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>Courses Page</h1>
+  <!-- Navigation -->
   <nav>
-    <a href="index.html">Home</a> |
-    <a href="courses.html">Courses</a> |
-    <a href="contact.html">Contact</a>
+    <div class="nav-container">
+      <a href="index.html" class="logo">PD Academy</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="courses.html" class="active">Courses</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
   </nav>
 
-  <p>List of demo courses.</p>
+  <!-- Page Header -->
+  <section class="page-header">
+    <h1>Discover Your Path to Success</h1>
+    <p>Choose from our comprehensive collection of expert-led courses</p>
+  </section>
+
+  <!-- Courses Section -->
+  <section class="courses-section">
+    <div class="container">
+      <!-- Filter Tabs -->
+      <div class="filter-tabs">
+        <button class="filter-btn active">All Courses</button>
+        <button class="filter-btn">Leadership</button>
+        <button class="filter-btn">Business</button>
+        <button class="filter-btn">Personal Growth</button>
+        <button class="filter-btn">Communication</button>
+      </div>
+
+      <!-- Courses Grid -->
+      <div class="courses-grid">
+        <!-- Course 1 -->
+        <div class="course-card">
+          <div class="course-image">🎯</div>
+          <div class="course-content">
+            <span class="course-category">Leadership</span>
+            <h3>Master Leadership Skills</h3>
+            <div class="course-rating">
+              <span class="stars">★★★★★</span>
+              <span>(4.9/5)</span>
+            </div>
+            <p>Develop the essential skills to lead teams, drive innovation, and create lasting impact in your organization.</p>
+            <div class="course-meta">
+              <span class="course-duration">⏱ 8 weeks</span>
+              <span class="course-price">₹14,999</span>
+            </div>
+            <a href="contact.html" class="enroll-btn">Enroll Now</a>
+          </div>
+        </div>
+
+        <!-- Course 2 -->
+        <div class="course-card">
+          <div class="course-image">💼</div>
+          <div class="course-content">
+            <span class="course-category">Business</span>
+            <h3>Business Strategy & Growth</h3>
+            <div class="course-rating">
+              <span class="stars">★★★★★</span>
+              <span>(4.8/5)</span>
+            </div>
+            <p>Learn proven strategies to scale your business, optimize operations, and achieve sustainable growth.</p>
+            <div class="course-meta">
+              <span class="course-duration">⏱ 10 weeks</span>
+              <span class="course-price">₹19,999</span>
+            </div>
+            <a href="contact.html" class="enroll-btn">Enroll Now</a>
+          </div>
+        </div>
+
+        <!-- Course 3 -->
+        <div class="course-card">
+          <div class="course-image">🧠</div>
+          <div class="course-content">
+            <span class="course-category">Personal Growth</span>
+            <h3>Peak Performance Mastery</h3>
+            <div class="course-rating">
+              <span class="stars">★★★★★</span>
+              <span>(5.0/5)</span>
+            </div>
+            <p>Unlock your full potential and achieve extraordinary results in every area of your life.</p>
+            <div class="course-meta">
+              <span class="course-duration">⏱ 6 weeks</span>
+              <span class="course-price">₹12,999</span>
+            </div>
+            <a href="contact.html" class="enroll-btn">Enroll Now</a>
+          </div>
+        </div>
+
+        <!-- Course 4 -->
+        <div class="course-card">
+          <div class="course-image">💬</div>
+          <div class="course-content">
+            <span class="course-category">Communication</span>
+            <h3>Advanced Communication Skills</h3>
+            <div class="course-rating">
+              <span class="stars">★★★★★</span>
+              <span>(4.9/5)</span>
+            </div>
+            <p>Master the art of persuasion, influence, and impactful communication in any situation.</p>
+            <div class="course-meta">
+              <span class="course-duration">⏱ 5 weeks</span>
+              <span class="course-price">₹9,999</span>
+            </div>
+            <a href="contact.html" class="enroll-btn">Enroll Now</a>
+          </div>
+        </div>
+
+        <!-- Course 5 -->
+        <div class="course-card">
+          <div class="course-image">⚡</div>
+          <div class="course-content">
+            <span class="course-category">Personal Growth</span>
+            <h3>Time Management Mastery</h3>
+            <div class="course-rating">
+              <span class="stars">★★★★★</span>
+              <span>(4.7/5)</span>
+            </div>
+            <p>Take control of your time, boost productivity, and achieve work-life balance with proven techniques.</p>
+            <div class="course-meta">
+              <span class="course-duration">⏱ 4 weeks</span>
+              <span class="course-price">₹7,999</span>
+            </div>
+            <a href="contact.html" class="enroll-btn">Enroll Now</a>
+          </div>
+        </div>
+
+        <!-- Course 6 -->
+        <div class="course-card">
+          <div class="course-image">🚀</div>
+          <div class="course-content">
+            <span class="course-category">Business</span>
+            <h3>Digital Marketing Excellence</h3>
+            <div class="course-rating">
+              <span class="stars">★★★★★</span>
+              <span>(4.8/5)</span>
+            </div>
+            <p>Master modern marketing strategies to grow your brand and reach your target audience effectively.</p>
+            <div class="course-meta">
+              <span class="course-duration">⏱ 12 weeks</span>
+              <span class="course-price">₹24,999</span>
+            </div>
+            <a href="contact.html" class="enroll-btn">Enroll Now</a>
+          </div>
+        </div>
+
+        <!-- Course 7 -->
+        <div class="course-card">
+          <div class="course-image">💪</div>
+          <div class="course-content">
+            <span class="course-category">Personal Growth</span>
+            <h3>Building Unstoppable Confidence</h3>
+            <div class="course-rating">
+              <span class="stars">★★★★★</span>
+              <span>(4.9/5)</span>
+            </div>
+            <p>Transform your mindset, overcome self-doubt, and develop unshakeable confidence in yourself.</p>
+            <div class="course-meta">
+              <span class="course-duration">⏱ 6 weeks</span>
+              <span class="course-price">₹11,999</span>
+            </div>
+            <a href="contact.html" class="enroll-btn">Enroll Now</a>
+          </div>
+        </div>
+
+        <!-- Course 8 -->
+        <div class="course-card">
+          <div class="course-image">🎓</div>
+          <div class="course-content">
+            <span class="course-category">Leadership</span>
+            <h3>Executive Leadership Program</h3>
+            <div class="course-rating">
+              <span class="stars">★★★★★</span>
+              <span>(5.0/5)</span>
+            </div>
+            <p>Advanced leadership training for executives ready to take their careers to the next level.</p>
+            <div class="course-meta">
+              <span class="course-duration">⏱ 16 weeks</span>
+              <span class="course-price">₹49,999</span>
+            </div>
+            <a href="contact.html" class="enroll-btn">Enroll Now</a>
+          </div>
+        </div>
+
+        <!-- Course 9 -->
+        <div class="course-card">
+          <div class="course-image">🌟</div>
+          <div class="course-content">
+            <span class="course-category">Communication</span>
+            <h3>Public Speaking Mastery</h3>
+            <div class="course-rating">
+              <span class="stars">★★★★★</span>
+              <span>(4.8/5)</span>
+            </div>
+            <p>Overcome stage fright and become a captivating speaker who inspires and influences audiences.</p>
+            <div class="course-meta">
+              <span class="course-duration">⏱ 8 weeks</span>
+              <span class="course-price">₹16,999</span>
+            </div>
+            <a href="contact.html" class="enroll-btn">Enroll Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to Start Your Journey?</h2>
+      <p>Join thousands of successful professionals who have transformed their lives</p>
+      <a href="contact.html" class="cta-button">Get Started Today</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 Professional Development Academy. All rights reserved.</p>
+      <p>Empowering individuals to achieve extraordinary results.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Simple filter functionality
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+  </script>
 </body>
 </html>
-
