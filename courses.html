@@ -28,7 +28,6 @@
       overflow-x: hidden;
     }
 
-    /* Navigation */
     nav {
       background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
       padding: 1rem 0;
@@ -53,7 +52,6 @@
       font-weight: bold;
       color: #fff;
       text-decoration: none;
-      letter-spacing: 1px;
     }
 
     .nav-links {
@@ -72,23 +70,14 @@
       border-radius: 5px;
     }
 
-    .nav-links a:hover,
-    .nav-links a.active {
+    .nav-links a:hover, .nav-links a.active {
       background: rgba(255,255,255,0.1);
-      transform: translateY(-2px);
     }
 
-    /* Cart Icon */
     .cart-icon {
       position: relative;
       cursor: pointer;
       font-size: 1.5rem;
-      padding: 0.5rem;
-      transition: all 0.3s ease;
-    }
-
-    .cart-icon:hover {
-      transform: scale(1.1);
     }
 
     .cart-count {
@@ -105,15 +94,8 @@
       justify-content: center;
       font-size: 0.75rem;
       font-weight: bold;
-      animation: pulse 0.3s ease;
     }
 
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.2); }
-    }
-
-    /* Page Header */
     .page-header {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       padding: 8rem 2rem 4rem;
@@ -125,27 +107,8 @@
     .page-header h1 {
       font-size: 3rem;
       margin-bottom: 1rem;
-      animation: fadeInUp 0.8s ease;
     }
 
-    .page-header p {
-      font-size: 1.2rem;
-      opacity: 0.9;
-      animation: fadeInUp 1s ease;
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Courses Section */
     .courses-section {
       padding: 4rem 2rem;
       background: #f8f9fa;
@@ -156,35 +119,6 @@
       margin: 0 auto;
     }
 
-    /* Filter Tabs */
-    .filter-tabs {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 3rem;
-      flex-wrap: wrap;
-    }
-
-    .filter-btn {
-      padding: 0.7rem 1.5rem;
-      background: white;
-      border: 2px solid #667eea;
-      color: #667eea;
-      border-radius: 25px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: all 0.3s ease;
-    }
-
-    .filter-btn:hover,
-    .filter-btn.active {
-      background: #667eea;
-      color: white;
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
-    }
-
-    /* Course Grid */
     .courses-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -240,6 +174,17 @@
       margin-bottom: 1.5rem;
     }
 
+    .course-rating {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .stars {
+      color: #ffc107;
+    }
+
     .course-meta {
       display: flex;
       justify-content: space-between;
@@ -260,40 +205,18 @@
       color: #667eea;
     }
 
-    .course-rating {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .stars {
-      color: #ffc107;
-      font-size: 1.1rem;
-    }
-
-    .course-actions {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 0.75rem;
-    }
-
-    .btn {
-      display: block;
-      padding: 0.8rem;
-      text-align: center;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      border: none;
-      cursor: pointer;
-      font-size: 1rem;
-    }
-
     .add-to-cart-btn {
+      display: block;
+      width: 100%;
+      padding: 0.8rem;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: white;
+      text-align: center;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
     }
 
     .add-to-cart-btn:hover {
@@ -304,102 +227,8 @@
     .add-to-cart-btn:disabled {
       background: #ccc;
       cursor: not-allowed;
-      transform: none;
     }
 
-    .view-details-btn {
-      background: white;
-      color: #667eea;
-      border: 2px solid #667eea;
-    }
-
-    .view-details-btn:hover {
-      background: #f8f9fa;
-    }
-
-    /* Toast Notification */
-    .toast {
-      position: fixed;
-      top: 100px;
-      right: 20px;
-      background: #10b981;
-      color: white;
-      padding: 1rem 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      z-index: 10000;
-      animation: slideIn 0.3s ease, slideOut 0.3s ease 2.7s;
-      opacity: 0;
-    }
-
-    .toast.show {
-      opacity: 1;
-    }
-
-    @keyframes slideIn {
-      from {
-        transform: translateX(400px);
-        opacity: 0;
-      }
-      to {
-        transform: translateX(0);
-        opacity: 1;
-      }
-    }
-
-    @keyframes slideOut {
-      from {
-        transform: translateX(0);
-        opacity: 1;
-      }
-      to {
-        transform: translateX(400px);
-        opacity: 0;
-      }
-    }
-
-    /* CTA Section */
-    .cta-section {
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-      color: white;
-      padding: 4rem 2rem;
-      text-align: center;
-    }
-
-    .cta-section h2 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .cta-section p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-      opacity: 0.9;
-    }
-
-    .cta-button {
-      display: inline-block;
-      padding: 1rem 2.5rem;
-      background: #667eea;
-      color: white;
-      text-decoration: none;
-      border-radius: 50px;
-      font-weight: 600;
-      font-size: 1.1rem;
-      transition: all 0.3s ease;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    }
-
-    .cta-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-      background: #764ba2;
-    }
-
-    /* Footer */
     footer {
       background: #1a1a2e;
       color: white;
@@ -407,34 +236,39 @@
       padding: 2rem;
     }
 
-    footer p {
-      opacity: 0.8;
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: #10b981;
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+      animation: slideIn 0.3s ease;
+      z-index: 10000;
     }
 
-    /* Responsive */
-    @media (max-width: 768px) {
-      .page-header h1 {
-        font-size: 2rem;
+    @keyframes slideIn {
+      from {
+        transform: translateX(400px);
       }
+      to {
+        transform: translateX(0);
+      }
+    }
 
+    @media (max-width: 768px) {
       .courses-grid {
         grid-template-columns: 1fr;
       }
-
-      .nav-links {
-        gap: 1rem;
-      }
-
-      .toast {
-        right: 10px;
-        left: 10px;
-        width: auto;
+      .page-header h1 {
+        font-size: 2rem;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Navigation -->
   <nav>
     <div class="nav-container">
       <a href="index.html" class="logo">🎓 PD Academy</a>
@@ -452,191 +286,56 @@
     </div>
   </nav>
 
-  <!-- Page Header -->
   <section class="page-header">
-    <h1>🚀 Discover Your Path to Success</h1>
+    <h1>📚 Discover Your Path to Success</h1>
     <p>Choose from our comprehensive collection of expert-led courses</p>
   </section>
 
-  <!-- Courses Section -->
   <section class="courses-section">
     <div class="container">
-      <!-- Filter Tabs -->
-      <div class="filter-tabs">
-        <button class="filter-btn active" data-category="all">All Courses</button>
-        <button class="filter-btn" data-category="Leadership">Leadership</button>
-        <button class="filter-btn" data-category="Business">Business</button>
-        <button class="filter-btn" data-category="Personal Growth">Personal Growth</button>
-        <button class="filter-btn" data-category="Communication">Communication</button>
-      </div>
-
-      <!-- Courses Grid -->
-      <div class="courses-grid" id="coursesGrid">
-        <!-- Courses will be dynamically loaded here -->
-      </div>
+      <div class="courses-grid" id="coursesGrid"></div>
     </div>
   </section>
 
-  <!-- CTA Section -->
-  <section class="cta-section">
-    <div class="container">
-      <h2>💡 Ready to Start Your Journey?</h2>
-      <p>Join thousands of successful professionals who have transformed their lives</p>
-      <a href="contact.html" class="cta-button">Get Started Today</a>
-    </div>
-  </section>
-
-  <!-- Footer -->
   <footer>
-    <div class="container">
-      <p>&copy; 2024 Professional Development Academy. All rights reserved.</p>
-      <p>Empowering individuals to achieve extraordinary results.</p>
-    </div>
+    <p>&copy; 2024 Professional Development Academy. All rights reserved.</p>
   </footer>
 
   <script>
-    // Course Data
     const courses = [
-      {
-        id: 'course-1',
-        name: 'Master Leadership Skills',
-        category: 'Leadership',
-        description: 'Develop the essential skills to lead teams, drive innovation, and create lasting impact in your organization.',
-        duration: '8 weeks',
-        price: 14999,
-        rating: 4.9,
-        icon: '👔'
-      },
-      {
-        id: 'course-2',
-        name: 'Business Strategy & Growth',
-        category: 'Business',
-        description: 'Learn proven strategies to scale your business, optimize operations, and achieve sustainable growth.',
-        duration: '10 weeks',
-        price: 19999,
-        rating: 4.8,
-        icon: '📊'
-      },
-      {
-        id: 'course-3',
-        name: 'Peak Performance Mastery',
-        category: 'Personal Growth',
-        description: 'Unlock your full potential and achieve extraordinary results in every area of your life.',
-        duration: '6 weeks',
-        price: 12999,
-        rating: 5.0,
-        icon: '🎯'
-      },
-      {
-        id: 'course-4',
-        name: 'Advanced Communication Skills',
-        category: 'Communication',
-        description: 'Master the art of persuasion, influence, and impactful communication in any situation.',
-        duration: '5 weeks',
-        price: 9999,
-        rating: 4.9,
-        icon: '💬'
-      },
-      {
-        id: 'course-5',
-        name: 'Time Management Mastery',
-        category: 'Personal Growth',
-        description: 'Take control of your time, boost productivity, and achieve work-life balance with proven techniques.',
-        duration: '4 weeks',
-        price: 7999,
-        rating: 4.7,
-        icon: '⏰'
-      },
-      {
-        id: 'course-6',
-        name: 'Digital Marketing Excellence',
-        category: 'Business',
-        description: 'Master modern marketing strategies to grow your brand and reach your target audience effectively.',
-        duration: '12 weeks',
-        price: 24999,
-        rating: 4.8,
-        icon: '📱'
-      },
-      {
-        id: 'course-7',
-        name: 'Building Unstoppable Confidence',
-        category: 'Personal Growth',
-        description: 'Transform your mindset, overcome self-doubt, and develop unshakeable confidence in yourself.',
-        duration: '6 weeks',
-        price: 11999,
-        rating: 4.9,
-        icon: '💪'
-      },
-      {
-        id: 'course-8',
-        name: 'Executive Leadership Program',
-        category: 'Leadership',
-        description: 'Advanced leadership training for executives ready to take their careers to the next level.',
-        duration: '16 weeks',
-        price: 49999,
-        rating: 5.0,
-        icon: '🏆'
-      },
-      {
-        id: 'course-9',
-        name: 'Public Speaking Mastery',
-        category: 'Communication',
-        description: 'Overcome stage fright and become a captivating speaker who inspires and influences audiences.',
-        duration: '8 weeks',
-        price: 16999,
-        rating: 4.8,
-        icon: '🎤'
-      }
+      { id: 'course-1', name: 'Master Leadership Skills', category: 'Leadership', icon: '🎯', price: 14999, duration: '8 weeks', rating: 4.9, description: 'Develop essential skills to lead teams and drive innovation.' },
+      { id: 'course-2', name: 'Business Strategy & Growth', category: 'Business', icon: '💼', price: 19999, duration: '10 weeks', rating: 4.8, description: 'Learn proven strategies to scale your business.' },
+      { id: 'course-3', name: 'Peak Performance Mastery', category: 'Personal Growth', icon: '🧠', price: 12999, duration: '6 weeks', rating: 5.0, description: 'Unlock your full potential and achieve extraordinary results.' },
+      { id: 'course-4', name: 'Advanced Communication Skills', category: 'Communication', icon: '💬', price: 9999, duration: '5 weeks', rating: 4.9, description: 'Master the art of persuasion and influence.' },
+      { id: 'course-5', name: 'Time Management Mastery', category: 'Personal Growth', icon: '⚡', price: 7999, duration: '4 weeks', rating: 4.7, description: 'Take control of your time and boost productivity.' },
+      { id: 'course-6', name: 'Digital Marketing Excellence', category: 'Business', icon: '🚀', price: 24999, duration: '12 weeks', rating: 4.8, description: 'Master modern marketing strategies.' },
+      { id: 'course-7', name: 'Building Unstoppable Confidence', category: 'Personal Growth', icon: '💪', price: 11999, duration: '6 weeks', rating: 4.9, description: 'Transform your mindset and develop unshakeable confidence.' },
+      { id: 'course-8', name: 'Executive Leadership Program', category: 'Leadership', icon: '🎓', price: 49999, duration: '16 weeks', rating: 5.0, description: 'Advanced leadership training for executives.' },
+      { id: 'course-9', name: 'Public Speaking Mastery', category: 'Communication', icon: '🌟', price: 16999, duration: '8 weeks', rating: 4.8, description: 'Become a captivating speaker who inspires audiences.' }
     ];
 
-    // Initialize cart count
     function updateCartCount() {
       const cart = JSON.parse(localStorage.getItem('cart')) || [];
       document.getElementById('cartCount').textContent = cart.length;
     }
 
-    // Show toast notification
-    function showToast(message) {
-      const existingToast = document.querySelector('.toast');
-      if (existingToast) {
-        existingToast.remove();
-      }
-
-      const toast = document.createElement('div');
-      toast.className = 'toast show';
-      toast.innerHTML = `<span>✓</span> <span>${message}</span>`;
-      document.body.appendChild(toast);
-
-      setTimeout(() => {
-        toast.remove();
-      }, 3000);
+    function isInCart(courseId) {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      return cart.some(item => item.id === courseId);
     }
 
-    // Add to cart function
-    function addToCart(courseId) {
-      const course = courses.find(c => c.id === courseId);
-      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    function addToCart(course) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
       
-      // Check if course already in cart
-      if (cart.find(item => item.id === courseId)) {
-        showToast('Course already in cart!');
+      if (cart.some(item => item.id === course.id)) {
+        showToast('Already in cart!', 'warning');
         return;
       }
 
-      cart.push({
-        id: course.id,
-        name: course.name,
-        price: course.price,
-        category: course.category,
-        duration: course.duration,
-        icon: course.icon
-      });
-
+      cart.push(course);
       localStorage.setItem('cart', JSON.stringify(cart));
-      updateCartCount();
-      showToast('Course added to cart!');
 
-      // Google Analytics - Add to Cart Event
+      // GA4 add_to_cart event
       gtag('event', 'add_to_cart', {
         currency: 'INR',
         value: course.price,
@@ -649,68 +348,52 @@
         }]
       });
 
-      // Disable button
-      const button = document.querySelector(`button[data-course-id="${courseId}"]`);
-      if (button) {
-        button.disabled = true;
-        button.textContent = '✓ Added to Cart';
-      }
+      updateCartCount();
+      renderCourses();
+      showToast('Added to cart!', 'success');
     }
 
-    // Check if course is in cart
-    function isInCart(courseId) {
-      const cart = JSON.parse(localStorage.getItem('cart')) || [];
-      return cart.some(item => item.id === courseId);
+    function showToast(message, type) {
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.textContent = message;
+      if (type === 'warning') toast.style.background = '#ffc107';
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 3000);
     }
 
-    // Render courses
-    function renderCourses(filterCategory = 'all') {
+    function renderCourses() {
       const grid = document.getElementById('coursesGrid');
-      const filteredCourses = filterCategory === 'all' 
-        ? courses 
-        : courses.filter(c => c.category === filterCategory);
-
-      grid.innerHTML = filteredCourses.map(course => `
-        <div class="course-card" data-category="${course.category}">
-          <div class="course-image">${course.icon}</div>
-          <div class="course-content">
-            <span class="course-category">${course.category}</span>
-            <h3>${course.name}</h3>
-            <div class="course-rating">
-              <span class="stars">⭐⭐⭐⭐⭐</span>
-              <span>(${course.rating}/5)</span>
-            </div>
-            <p>${course.description}</p>
-            <div class="course-meta">
-              <span class="course-duration">🕒 ${course.duration}</span>
-              <span class="course-price">₹${course.price.toLocaleString()}</span>
-            </div>
-            <div class="course-actions">
+      grid.innerHTML = courses.map(course => {
+        const inCart = isInCart(course.id);
+        return `
+          <div class="course-card">
+            <div class="course-image">${course.icon}</div>
+            <div class="course-content">
+              <span class="course-category">${course.category}</span>
+              <h3>${course.name}</h3>
+              <div class="course-rating">
+                <span class="stars">★★★★★</span>
+                <span>(${course.rating}/5)</span>
+              </div>
+              <p>${course.description}</p>
+              <div class="course-meta">
+                <span class="course-duration">⏱ ${course.duration}</span>
+                <span class="course-price">₹${course.price.toLocaleString()}</span>
+              </div>
               <button 
-                class="btn add-to-cart-btn" 
-                onclick="addToCart('${course.id}')"
-                data-course-id="${course.id}"
-                ${isInCart(course.id) ? 'disabled' : ''}
+                class="add-to-cart-btn" 
+                onclick='addToCart(${JSON.stringify(course).replace(/'/g, "\\'")})'
+                ${inCart ? 'disabled' : ''}
               >
-                ${isInCart(course.id) ? '✓ Added to Cart' : '🛒 Add to Cart'}
+                ${inCart ? '✓ In Cart' : '🛒 Add to Cart'}
               </button>
             </div>
           </div>
-        </div>
-      `).join('');
+        `;
+      }).join('');
     }
 
-    // Filter functionality
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-      btn.addEventListener('click', function() {
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
-        const category = this.getAttribute('data-category');
-        renderCourses(category);
-      });
-    });
-
-    // Initialize
     updateCartCount();
     renderCourses();
   </script>

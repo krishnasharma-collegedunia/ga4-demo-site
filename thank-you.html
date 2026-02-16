@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank You - Professional Development Academy</title>
+  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V96WXEPZXK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-V96WXEPZXK');
+
+    // GA4 Lead Conversion Events
+    gtag('event', 'lead_thankyou', {
+      'event_category': 'lead',
+      'event_label': 'form_submission',
+      'value': 1
+    });
+
+    gtag('event', 'purchase', {
+      'transaction_id': 'lead_' + Date.now(),
+      'value': 1.0,
+      'currency': 'INR',
+      'items': [{
+        'item_name': 'Course Lead',
+        'item_category': 'Lead',
+        'price': 1.0,
+        'quantity': 1
+      }]
+    });
+  </script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    nav {
+      background: rgba(26, 26, 46, 0.9);
+      padding: 1rem 0;
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .thank-you-section {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 2rem;
+    }
+
+    .thank-you-content {
+      background: white;
+      border-radius: 30px;
+      padding: 4rem 3rem;
+      max-width: 700px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      animation: fadeInScale 0.8s ease;
+    }
+
+    @keyframes fadeInScale {
+      from {
+        opacity: 0;
+        transform: scale(0.9) translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    .success-icon {
+      width: 120px;
+      height: 120px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      margin: 0 auto 2rem;
+      animation: pulse 2s ease infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #1a1a2e;
+      text-align: center;
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: #666;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .next-steps {
+      background: #f8f9fa;
+      padding: 2rem;
+      border-radius: 15px;
+      margin: 2rem 0;
+    }
+
+    .next-steps h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: #1a1a2e;
+      text-align: center;
+    }
+
+    .step {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .step-number {
+      min-width: 35px;
+      height: 35px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+
+    .step-content h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+      color: #333;
+    }
+
+    .step-content p {
+      font-size: 0.95rem;
+      color: #666;
+      margin: 0;
+      text-align: left;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .btn {
+      padding: 1rem 2rem;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: #667eea;
+      border: 2px solid #667eea;
+    }
+
+    .btn-secondary:hover {
+      background: #667eea;
+      color: white;
+    }
+
+    footer {
+      background: rgba(26, 26, 46, 0.9);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .thank-you-content {
+        padding: 3rem 2rem;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      .action-buttons {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="logo">🎓 PD Academy</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="thank-you-section">
+    <div class="thank-you-content">
+      <div class="success-icon">✓</div>
+      
+      <h1>Thank You!</h1>
+      <p>Your message has been successfully received. We're excited to help you transform your life and achieve your goals!</p>
+
+      <div class="next-steps">
+        <h2>What Happens Next?</h2>
+        
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>We'll Review Your Information</h3>
+            <p>Our team will carefully review your inquiry and match you with the perfect course and advisor.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>Expect a Call Within 24 Hours</h3>
+            <p>A dedicated course advisor will reach out to discuss your goals and answer any questions.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>Start Your Transformation</h3>
+            <p>Once enrolled, you'll get immediate access to our platform and community support.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <a href="courses.html" class="btn btn-primary">Explore Courses</a>
+        <a href="index.html" class="btn btn-secondary">Return Home</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 Professional Development Academy. All rights reserved.</p>
+  </footer>
+</body>
+</html>
